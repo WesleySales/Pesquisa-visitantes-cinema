@@ -1,0 +1,51 @@
+#include <stdio.h>
+#include <locale.h>
+#include <string.h>
+#include <stdlib.h>
+
+
+#define MAX 100
+
+int main (){
+	setlocale(LC_ALL,"Portuguese");
+	int numeroPesquisas=0,terminar=-1;
+	int genero[MAX], sexo[MAX], idades[MAX], idade;
+	
+	do{
+		printf("Pesquisa de satisfacao: \n");
+		printf("______________________\n");
+		printf("\nIdade: \n");
+		scanf("%d",&idade);
+	if(idade!=-1){
+		idades[numeroPesquisas]=idade;
+		printf("\nSexo: \n 1. Homem\n 2. Mulher");
+		scanf("%d",&sexo[numeroPesquisas]);
+		printf("\nGenero: \n 1. Comedia\n 2.Terror\n 3. Acao");
+		scanf("%d",&genero[numeroPesquisas]);
+		
+		numeroPesquisas+=1;
+		system("cls");
+		
+		}	
+	} while (idade!=-1);
+	
+	printf("Pesquisa encerrada!\nDADOS:\n");
+	
+	int media_idade_terror;
+	for(int i=0;i<numeroPesquisas;i++){
+		int soma_terror=0, soma_idade_terror=0;
+		int soma_mulheres=0,soma_homens=0;
+		
+		if(genero[i]==2){
+			soma_terror+=1;
+			soma_idade_terror+=idades[i];
+		}
+		media_idade_terror=soma_idade_terror/soma_terror;
+		
+	}
+	printf("A media de idades que prefere terror é %d anos. ",media_idade_terror);
+	
+	
+	
+	
+}
