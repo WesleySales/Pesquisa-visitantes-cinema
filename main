@@ -31,10 +31,20 @@ int main (){
 	
 	printf("Pesquisa encerrada!\nDADOS:\n");
 	
-	int media_idade_terror;
+	double media_idade_terror;
+	double perc_homem_acao;
+	
 	for(int i=0;i<numeroPesquisas;i++){
-		int soma_terror=0, soma_idade_terror=0;
-		int soma_mulheres=0,soma_homens=0;
+		double soma_terror=0, soma_idade_terror=0;
+		double soma_mulheres=0,soma_homens=0;
+		double homem_acao=0;
+		
+		if (sexo[i]%2==0){
+			soma_mulheres+=1;
+		}
+		else{
+			soma_homens+=1;
+		}
 		
 		if(genero[i]==2){
 			soma_terror+=1;
@@ -42,8 +52,15 @@ int main (){
 		}
 		media_idade_terror=soma_idade_terror/soma_terror;
 		
+		if(sexo[i]==1 && genero[i]==3){
+			homem_acao=0;
+			homem_acao+=1;
+		}
+		perc_homem_acao=100*(homem_acao/soma_homens);
+		
 	}
-	printf("A media de idades que prefere terror é %d anos. ",media_idade_terror);
+	printf("A media de idades que prefere terror é %f anos. ",media_idade_terror);
+	printf("Percentual de homens que preferem filme de Acao: %.2f % ",perc_homem_acao);
 	
 	
 	
