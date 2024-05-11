@@ -7,7 +7,7 @@
 #define MAX 100
 
 int main (){
-	setlocale(LC_ALL,"Portuguese");
+	setlocale(LC_ALL,"");
 	int numeroPesquisas=0,terminar=-1;
 	int genero[MAX], sexo[MAX], idades[MAX], idade;
 	
@@ -31,13 +31,23 @@ int main (){
 	
 	printf("Pesquisa encerrada!\nDADOS:\n");
 	
-	double media_idade_terror;
-	double perc_homem_acao;
-	
+	int media_idade_terror;
+	int perc_homem_acao;
+	int soma_terror=0, soma_idade_terror=0;
+	int soma_mulheres=0,soma_homens=0;
+	int homem_acao=0;
+	int soma_homens_comedia=0;
+	int soma_mulheres_comedia=0;
+	int menor_idade=60,maior_idade=0;
+
 	for(int i=0;i<numeroPesquisas;i++){
-		double soma_terror=0, soma_idade_terror=0;
-		double soma_mulheres=0,soma_homens=0;
-		double homem_acao=0;
+		
+		if(menor_idade>=idades[i]){
+			menor_idade=idades[i];
+		}
+		if(maior_idade<=idades[i]){
+			maior_idade=idades[i];
+		}
 		
 		if (sexo[i]%2==0){
 			soma_mulheres+=1;
@@ -46,23 +56,44 @@ int main (){
 			soma_homens+=1;
 		}
 		
+		if(genero[i]==1){
+			if (sexo[i]%2==0){
+			soma_mulheres_comedia+=1;
+		}
+		else{
+			soma_homens_comedia+=1;
+		}
+		}
+		
 		if(genero[i]==2){
 			soma_terror+=1;
 			soma_idade_terror+=idades[i];
 		}
-		media_idade_terror=soma_idade_terror/soma_terror;
+		
 		
 		if(sexo[i]==1 && genero[i]==3){
 			homem_acao=0;
 			homem_acao+=1;
 		}
-		perc_homem_acao=100*(homem_acao/soma_homens);
 		
 	}
-	printf("A media de idades que prefere terror é %f anos. ",media_idade_terror);
-	printf("Percentual de homens que preferem filme de Acao: %.2f % ",perc_homem_acao);
 	
+	media_idade_terror=soma_idade_terror/soma_terror;
+	perc_homem_acao=100*(homem_acao/soma_homens);
+
 	
+	printf("A media de idades que prefere terror é %d anos. \n",media_idade_terror);
+	printf("Percentual de homens que preferem filme de Acao: %d % \n",perc_homem_acao);
 	
+	if(soma_mulheres_comedia>soma_homens_comedia){
+		printf("Mais mulheres preferem comédia\n");
+	} else if (soma_mulheres_comedia>soma_homens_comedia){
+		printf("Mais homens preferem comédia\n");
+	} else {
+		printf("Homens e Mulheres assistiram filmes de comédia igual\n");
+	}
+	
+	printf("FAIXA ETARIA DOS VISITANTES DO CINEMA: %d aos %d de idade. ", menor_idade,maior_idade);
+
 	
 }
